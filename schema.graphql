@@ -3,6 +3,12 @@ type Query {
   post(id: ID!): Post
 }
 
+type Mutation {
+  createPost(title: String!, body: String): Post!
+  editPost(id: ID!, title: String, body: String): Post!
+  deletePost(id: ID!): Boolean!
+}
+
 type Post {
   id: ID!
   title: String,
