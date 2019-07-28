@@ -10,9 +10,11 @@ const port = process.env.PORT || 4000;
 const server = new ApolloServer({
   typeDefs,
   resolvers,
-  dataSources
+  dataSources,
+  introspection: true,
+  playground: true
 });
 
 server.listen(port).then(({ url }) => {
-  console.log(`🚀 Apollo Server ready at ${port}`);
+  console.log(`🚀 Apollo Server ready at http://localhost:${port}`);
 });
