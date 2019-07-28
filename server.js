@@ -1,7 +1,7 @@
 const { ApolloServer, gql } = require('apollo-server');
 const fs = require('fs');
-const resolvers = require('./resolvers.js');
-const PostAPI = require('./data/post.datasource.js');
+const resolvers = require('./resolvers');
+const { PostAPI } = require('./datasources');
 
 const schema = fs.readFileSync('./schema.graphql');
 const typeDefs = gql`${schema}`;
