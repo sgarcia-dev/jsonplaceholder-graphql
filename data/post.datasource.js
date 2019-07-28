@@ -10,6 +10,10 @@ class PostAPI extends RESTDataSource {
   async getPosts() {
     return await this.get('posts');
   }
+
+  async getPost({ id }) {
+    return await this.get(`posts/${id}`);
+  }
 }
 
 module.exports = PostAPI;
