@@ -1,16 +1,68 @@
 type Query {
-  posts: [Post]!,
+  posts: [Post]!
   post(id: ID!): Post
+  users: [User]!
+  user(id: ID!): User
 }
 
 type Mutation {
   createPost(title: String!, body: String): Post!
   editPost(id: ID!, title: String, body: String): Post!
   deletePost(id: ID!): Boolean!
+  createUser(input: UserInput): User!
+  editUser(id: ID!, input: UserInput): User!
+  deleteUser(id: ID!): Boolean!
 }
 
 type Post {
   id: ID!
   title: String,
   body: String
+}
+
+type User {
+  id: ID!
+  name: String
+  username: String
+  email: String
+  address: UserAddress
+  phone: String
+  website: String
+  company: UserCompany
+}
+
+type UserAddress {
+  street: String
+  suite: String
+  city: String
+  zipcode: String
+  geo: UserAddressGeo
+}
+
+type UserAddressGeo {
+  lat: Float
+  lng: Float
+}
+
+type UserCompany {
+  name: String
+  catchPhrase: String
+  bs: String
+}
+
+input UserInput {
+  name: String
+  username: String
+  email: String
+  street: String
+  suite: String
+  city: String
+  zipcode: String
+  lat: Float
+  lng: Float
+  phone: String
+  website: String
+  companyName: String
+  companyCatchphrase: String
+  companyBs: String
 }
