@@ -2,7 +2,9 @@ type Query {
   posts: [Post]!
   post(id: ID!): Post
   users: [User]!
-  user(id: ID!): User
+  user(id: ID!): User,
+  comments: [Comment]!
+  comment(id: ID!): Comment
 }
 
 type Mutation {
@@ -12,6 +14,9 @@ type Mutation {
   createUser(input: UserInput): User!
   editUser(id: ID!, input: UserInput): User!
   deleteUser(id: ID!): Boolean!
+  createComment(input: CommentInput): Comment!
+  editComment(id: ID!, input: CommentInput): Comment!
+  deleteComment(id: ID!): Boolean!
 }
 
 type Post {
@@ -65,4 +70,17 @@ input UserInput {
   companyName: String
   companyCatchphrase: String
   companyBs: String
+}
+
+type Comment {
+  id: ID!
+  name: String
+  email: String
+  body: String
+}
+
+input CommentInput {
+  name: String
+  email: String
+  body: String
 }
