@@ -1,5 +1,6 @@
 
 const { RESTDataSource } = require('apollo-datasource-rest');
+const { handle404 } = require('./utils.js');
 
 class PostAPI extends RESTDataSource {
   constructor() {
@@ -12,7 +13,11 @@ class PostAPI extends RESTDataSource {
   }
 
   async getPost({ id }) {
-    return await this.get(`posts/${id}`);
+    try {
+      return await this.get(`posts/${id}`);
+    } catch (err) {
+      return handle404(err);
+    }
   }
 
   async createPost({ title, body }) {
@@ -23,15 +28,23 @@ class PostAPI extends RESTDataSource {
   }
 
   async editPost({ id, title, body }) {
-    return await this.put(`posts/${id}`, {
-      title,
-      body
-    });
+    try {
+      return await this.put(`posts/${id}`, {
+        title,
+        body
+      });
+    } catch (err) {
+      return handle404(err);
+    }
   }
 
   async deletePost({ id }) {
-    await this.delete(`posts/${id}`);
-    return true;
+    try {
+      await this.delete(`posts/${id}`);
+      return true;
+    } catch (err) {
+      return handle404(err);
+    }
   }
 }
 

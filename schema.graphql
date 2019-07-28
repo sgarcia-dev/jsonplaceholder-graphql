@@ -9,14 +9,14 @@ type Query {
 
 type Mutation {
   createPost(title: String!, body: String): Post!
-  editPost(id: ID!, title: String, body: String): Post!
-  deletePost(id: ID!): Boolean!
+  editPost(id: ID!, title: String, body: String): Post
+  deletePost(id: ID!): Boolean
   createUser(input: UserInput): User!
-  editUser(id: ID!, input: UserInput): User!
-  deleteUser(id: ID!): Boolean!
+  editUser(id: ID!, input: UserInput): User
+  deleteUser(id: ID!): Boolean
   createComment(input: CommentInput): Comment!
-  editComment(id: ID!, input: CommentInput): Comment!
-  deleteComment(id: ID!): Boolean!
+  editComment(id: ID!, input: CommentInput): Comment
+  deleteComment(id: ID!): Boolean
 }
 
 type Post {
