@@ -5,6 +5,7 @@ const dataSources = require('./datasources');
 
 const schema = fs.readFileSync('./schema.graphql');
 const typeDefs = gql`${schema}`;
+const port = process.env.PORT || 4000;
 
 const server = new ApolloServer({
   typeDefs,
@@ -12,6 +13,6 @@ const server = new ApolloServer({
   dataSources
 });
 
-server.listen().then(({ url }) => {
-  console.log(`🚀 Apollo Server ready at ${url}`);
+server.listen(port).then(({ url }) => {
+  console.log(`🚀 Apollo Server ready at ${port}`);
 });
