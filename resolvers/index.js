@@ -12,5 +12,8 @@ module.exports = {
     ...Post.Mutation,
     ...User.Mutation,
     ...Comment.Mutation
-  }
+  },
+  Post: Post.Fields,
+  User: User.Fields,
+  Comment: Comment.Fields
 }

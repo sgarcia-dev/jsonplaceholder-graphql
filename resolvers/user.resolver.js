@@ -28,6 +28,14 @@ module.exports = {
       const { userAPI } = context.dataSources;
       return await userAPI.deleteUser({ id });
     },
+  },
+  Fields: {
+    posts: async (parent, args, context, info) => {
+      const { id } = parent;
+      const { postAPI } = context.dataSources;
+      const posts = await postAPI.getPosts();
+      return posts.filter(post => post.userId === id );
+    }
   }
 }
 

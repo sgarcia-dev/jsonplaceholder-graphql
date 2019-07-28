@@ -28,6 +28,14 @@ module.exports = {
       const { commentAPI } = context.dataSources;
       return await commentAPI.deleteComment({ id });
     },
+  },
+  Fields: {
+    post: async (parent, args, context, info) => {
+      const { postId } = parent;
+      const { postAPI } = context.dataSources;
+      if (!postId) return null;
+      return await postAPI.getPost({ id: postId });
+    }
   }
 }
 
