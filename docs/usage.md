@@ -140,7 +140,7 @@ fragment UserFields on User {
 ```
 
 Comment
-```
+```graphql
 query testCommentQueries {
   getComment: comment(id: 1) {
     ...CommentFields
