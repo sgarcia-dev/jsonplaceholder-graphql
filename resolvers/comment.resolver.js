@@ -12,15 +12,15 @@ module.exports = {
   },
   Mutation: {
     createComment: async (parent, args, context, info) => {
-      const { input: commentArgs } = args;
+      const { input } = args;
       const { commentAPI } = context.dataSources;
-      const comment = getCommentFromArgs(commentArgs);
+      const comment = getCommentFromInput(input);
       return await commentAPI.createComment({ comment });
     },
     editComment: async (parent, args, context, info) => {
-      const { id, input: commentArgs } = args;
+      const { id, input } = args;
       const { commentAPI } = context.dataSources;
-      const comment = getCommentFromArgs(commentArgs);
+      const comment = getCommentFromInput(input);
       return await commentAPI.editComment({ id, comment });
     },
     deleteComment: async (parent, args, context, info) => {
@@ -39,7 +39,7 @@ module.exports = {
   }
 }
 
-function getCommentFromArgs(args) {
+function getCommentFromInput(args) {
   return {
     name: args.name,
     email: args.email,

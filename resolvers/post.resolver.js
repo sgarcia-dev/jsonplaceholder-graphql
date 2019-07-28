@@ -12,14 +12,16 @@ module.exports = {
   },
   Mutation: {
     createPost: async (parent, args, context, info) => {
-      const { title, body } = args;
+      const { input } = args;
       const { postAPI } = context.dataSources;
-      return await postAPI.createPost({ title, body });
+      const post = getPostFromInput(input);
+      return await postAPI.createPost({ post });
     },
     editPost: async (parent, args, context, info) => {
-      const { id, title, body } = args;
+      const { id, input } = args;
       const { postAPI } = context.dataSources;
-      return await postAPI.editPost({ id, title, body });
+      const post = getPostFromInput(input);
+      return await postAPI.editPost({ id, post });
     },
     deletePost: async (parent, args, context, info) => {
       const { id } = args;
@@ -40,5 +42,12 @@ module.exports = {
       const comments = await commentAPI.getComments();
       return comments.filter(comment => comment.postId === id);
     },
+  }
+}
+
+function getPostFromInput(input) {
+  return {
+    title: input.title,
+    body: input.body
   }
 }

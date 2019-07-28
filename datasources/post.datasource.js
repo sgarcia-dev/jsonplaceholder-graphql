@@ -20,18 +20,16 @@ class PostAPI extends RESTDataSource {
     }
   }
 
-  async createPost({ title, body }) {
+  async createPost({ post }) {
     return await this.post('posts', {
-      title,
-      body
+      ...post
     })
   }
 
-  async editPost({ id, title, body }) {
+  async editPost({ id, post }) {
     try {
       return await this.put(`posts/${id}`, {
-        title,
-        body
+        ...post
       });
     } catch (err) {
       return handle404(err);

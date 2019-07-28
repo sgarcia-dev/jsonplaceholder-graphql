@@ -8,8 +8,8 @@ type Query {
 }
 
 type Mutation {
-  createPost(title: String!, body: String): Post!
-  editPost(id: ID!, title: String, body: String): Post
+  createPost(input: PostInput): Post!
+  editPost(id: ID!, input: PostInput): Post
   deletePost(id: ID!): Boolean
   createUser(input: UserInput): User!
   editUser(id: ID!, input: UserInput): User
@@ -25,6 +25,11 @@ type Post {
   body: String,
   user: User
   comments: [Comment]!
+}
+
+input PostInput {
+  title: String
+  body: String
 }
 
 type User {

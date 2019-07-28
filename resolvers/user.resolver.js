@@ -14,13 +14,13 @@ module.exports = {
     createUser: async (parent, args, context, info) => {
       const { input } = args;
       const { userAPI } = context.dataSources;
-      const user = getUserFromArgs(input);
+      const user = getUserFromInput(input);
       return await userAPI.createUser({ user });
     },
     editUser: async (parent, args, context, info) => {
       const { id, input } = args;
       const { userAPI } = context.dataSources;
-      const user = getUserFromArgs(input);
+      const user = getUserFromInput(input);
       return await userAPI.editUser({ id, user });
     },
     deleteUser: async (parent, args, context, info) => {
@@ -39,7 +39,7 @@ module.exports = {
   }
 }
 
-function getUserFromArgs(args) {
+function getUserFromInput(args) {
   return {
     name: args.name,
     username: args.username,
